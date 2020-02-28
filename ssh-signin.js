@@ -1,57 +1,71 @@
 require('dotenv').config();
 
-const fetch = require('node-fetch');
-const formatMessage = require('./utils');
+const { formatMessage, sendWebhookNotification, sendMailNotification, getUserData } = require('./utils');
 
 (async () => {
   // Get User Information
-  const data = await fetch(`ipinfo.io/` + process.env.IP, {
-    method: 'post',
-    body,
-    headers: { 'Content-Type': 'application/json' },
-  }).then(res => res.json());
+  const data = await getUserData(process.env.IP);
 
+  const templateVars = [
+    {
+      name: 'IP',
+      content: process.env.IP,
+    },
+    {
+      name: 'HOSTNAME',
+      content: process.env.HOSTNAME,
+    },
+    {
+      name: 'CITY',
+      content: data.city,
+    },
+    {
+      name: 'COUNTRY',
+      content: data.country,
+    },
+    {
+      name: 'COUNTRYFLAG',
+      content: data.country.toLowerCase(),
+    },
+    {
+      name: 'DATE',
+      content: new Date().toLocaleDateString('en-GB', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        minute: '2-digit',
+        hour: '2-digit',
+      }),
+    },
+  ];
+
+  // Send slack notification
   if (process.env.WEBHOOK_URL) {
     let message =
-      ':police_officer: **Security Update** :police_officer: \n\n :inbox_tray:  New SSH Connection on **|HOSTNAME|**! \nIP: *|IP|*\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRY|*: ***|COUNTRY|*** \nCITY: *|CITY|*';
+      ':police_officer: **Security Update** :police_officer: \n\nNew SSH Connection on **|HOSTNAME|** ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
+      process.env.WEBHOOK_MESSAGE;
 
-    if (process.env.WEBHOOK_MESSAGE) {
-      message = process.env.WEBHOOK_MESSAGE;
-    }
+    await sendWebhookNotification(process.env.WEBHOOK_URL, formatMessage(message, templateVars));
+  }
 
-    const templateVars = [
-      {
-        name: 'IP',
-        content: process.env.IP,
-      },
-      {
-        name: 'HOSTNAME',
-        content: process.env.HOSTNAME,
-      },
-      {
-        name: 'CITY',
-        content: data.city,
-      },
-      {
-        name: 'COUNTRY',
-        content: data.country,
-      },
-      {
-        name: 'DATE',
-        content: new Date().toLocaleDateString(),
-      },
-    ];
+  // Send Email
+  if (process.env.MAIL_SMTP_HOST) {
+    const {
+      MAIL_SMTP_HOST,
+      MAIL_SMTP_PORT,
+      MAIL_SMTP_USER,
+      MAIL_SMTP_PWD,
+      MAIL_SMTP_TO,
+      MAIL_SMTP_SENDGRID_API,
+    } = process.env;
 
-    const body = JSON.stringify({
-      text: formatMessage(message, templateVars),
-      username: 'Security',
-    }).replace(/\\\\n/g, '\\n');
-
-    // Send Notification
-    await fetch(process.env.WEBHOOK_URL, {
-      method: 'post',
-      body,
-      headers: { 'Content-Type': 'application/json' },
+    await sendMailNotification(`New SSH Connection to ${process.env.HOSTNAME}`, MAIL_SMTP_TO, 'signin', templateVars, {
+      smtpHost: MAIL_SMTP_HOST,
+      smtpPort: MAIL_SMTP_PORT,
+      smtpUser: MAIL_SMTP_USER,
+      smtpPwd: MAIL_SMTP_PWD,
+      sendgridAPI: MAIL_SMTP_SENDGRID_API,
     });
   }
 })();
