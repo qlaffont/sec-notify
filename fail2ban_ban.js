@@ -8,12 +8,16 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
 
   const templateVars = [
     {
-      name: 'IP',
-      content: process.env.IP,
+      name: 'JAIL',
+      content: process.env.JAIL,
     },
     {
       name: 'HOSTNAME',
       content: process.env.HOSTNAME,
+    },
+    {
+      name: 'FAILURE',
+      content: process.env.FAILURE,
     },
     {
       name: 'CITY',
@@ -43,7 +47,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   // Send slack notification
   if (process.env.WEBHOOK_URL) {
     let message =
-      ':police_officer: **Security Update** :police_officer: \n\nNew SSH Connection on **|HOSTNAME|** ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
+      ':shield: **Fail2Ban Update** :shield: \n\nNew Ban on **|HOSTNAME|** (jail -> *|JAIL|*) ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
       process.env.WEBHOOK_MESSAGE;
 
     await sendWebhookNotification(process.env.WEBHOOK_URL, formatMessage(message, templateVars));
@@ -63,7 +67,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
     await sendMailNotification(
       `New SSH Connection to ${process.env.HOSTNAME}`,
       MAIL_SMTP_TO,
-      'ssh_signin',
+      'fail2ban_ban',
       templateVars,
       {
         smtpHost: MAIL_SMTP_HOST,
