@@ -4,7 +4,7 @@ const { fromString } = require('html-to-text');
 const { readFile } = require('fs').promises;
 const { join } = require('path');
 const { compile } = require('handlebars');
-const { setApiKey, send } = require('@sendgrid/mail');
+const sdMail = require('@sendgrid/mail');
 
 const formatMessage = (text, vars = []) => {
   let result = text;
@@ -60,9 +60,9 @@ const sendMailNotification = async (subject, to, templateName, vars = {}, config
   };
 
   if (config.sendgridApi) {
-    setApiKey(config.sendgridApi);
+    sdMail.setApiKey(config.sendgridApi);
 
-    await send(mail);
+    await sdMail.send(mail);
   }
 
   if (config.smtpHost) {
