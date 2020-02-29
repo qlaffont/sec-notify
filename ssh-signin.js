@@ -41,12 +41,12 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   ];
 
   // Send slack notification
-  if (process.env.WEBHOOK_URL) {
+  if (process.env.WEBHOOK_SSH_URL) {
     let message =
       ':police_officer: **Security Update** :police_officer: \n\nNew SSH Connection on **|HOSTNAME|** ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
-      process.env.WEBHOOK_MESSAGE;
+      process.env.WEBHOOK_SSH_MESSAGE;
 
-    await sendWebhookNotification(process.env.WEBHOOK_URL, formatMessage(message, templateVars));
+    await sendWebhookNotification(process.env.WEBHOOK_SSH_URL, formatMessage(message, templateVars));
   }
 
   // Send Email

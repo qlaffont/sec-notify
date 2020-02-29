@@ -45,12 +45,12 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   ];
 
   // Send slack notification
-  if (process.env.WEBHOOK_URL) {
+  if (process.env.WEBHOOK_FAIL2BAN_URL) {
     let message =
       ':shield: **Fail2Ban Update** :shield: \n\nNew Ban on **|HOSTNAME|** (jail -> *|JAIL|*) ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
-      process.env.WEBHOOK_MESSAGE;
+      process.env.WEBHOOK_FAIL2BAN_MESSAGE;
 
-    await sendWebhookNotification(process.env.WEBHOOK_URL, formatMessage(message, templateVars));
+    await sendWebhookNotification(process.env.WEBHOOK_FAIL2BAN_URL, formatMessage(message, templateVars));
   }
 
   // Send Email
@@ -65,7 +65,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
     } = process.env;
 
     await sendMailNotification(
-      `New SSH Connection to ${process.env.HOSTNAME}`,
+      `New FAIL2BAN Connection to ${process.env.HOSTNAME}`,
       MAIL_SMTP_TO,
       'fail2ban_ban',
       templateVars,

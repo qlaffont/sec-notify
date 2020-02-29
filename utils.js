@@ -37,7 +37,7 @@ const sendMailNotification = async (subject, to, templateName, vars = {}, config
     throw new Error('Config object is not found');
   }
 
-  let emailData = await readFile(join(process.cwd(), 'templates', `${templateName}.hbs`));
+  let emailData = await readFile(join(__dirname, 'templates', `${templateName}.hbs`));
   emailData = emailData.toString();
 
   const handlebarVars = {};
