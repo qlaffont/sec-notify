@@ -60,7 +60,7 @@ const sendMailNotification = async (subject, to, templateName, vars = {}, config
   };
 
   if (config.sendgridApi) {
-    setApiKey(config.sendgridAPI);
+    setApiKey(config.sendgridApi);
 
     await send(mail);
   }
