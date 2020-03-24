@@ -20,6 +20,10 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
       content: process.env.FAILURES,
     },
     {
+      name: 'IP',
+      content: process.env.IP,
+    },
+    {
       name: 'CITY',
       content: data.city,
     },

@@ -16,6 +16,10 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
       content: process.env.HOSTNAME,
     },
     {
+      name: 'IP',
+      content: process.env.IP,
+    },
+    {
       name: 'CITY',
       content: data.city,
     },
