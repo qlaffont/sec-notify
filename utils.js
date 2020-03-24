@@ -86,9 +86,12 @@ const getUserData = async ip => {
   }).then(res => res.json());
 };
 
+const isEmailServiceActivated = process.env.MAIL_SMTP_HOST || process.env.MAIL_SMTP_SENDGRID_API ? true : false;
+
 module.exports = {
   getUserData,
   formatMessage,
   sendWebhookNotification,
   sendMailNotification,
+  isEmailServiceActivated,
 };

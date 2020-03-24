@@ -58,7 +58,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   }
 
   // Send Email
-  if (process.env.MAIL_SMTP_HOST) {
+  if (isEmailServiceActivated) {
     const {
       MAIL_SMTP_HOST,
       MAIL_SMTP_PORT,

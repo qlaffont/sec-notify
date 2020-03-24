@@ -50,7 +50,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   }
 
   // Send Email
-  if (process.env.MAIL_SMTP_HOST || process.env.MAIL_SMTP_SENDGRID_API) {
+  if (isEmailServiceActivated) {
     const {
       MAIL_SMTP_HOST,
       MAIL_SMTP_PORT,
