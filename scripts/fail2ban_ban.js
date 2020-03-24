@@ -16,8 +16,8 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
       content: process.env.HOSTNAME,
     },
     {
-      name: 'FAILURE',
-      content: process.env.FAILURE,
+      name: 'FAILURES',
+      content: process.env.FAILURES,
     },
     {
       name: 'CITY',
@@ -65,7 +65,7 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
     } = process.env;
 
     await sendMailNotification(
-      `New FAIL2BAN Connection to ${process.env.HOSTNAME}`,
+      `[FAIL2BAN] New Ban in ${process.env.HOSTNAME}`,
       MAIL_SMTP_TO,
       'fail2ban_ban',
       templateVars,
