@@ -80,7 +80,7 @@ const {
         smtpPort: MAIL_SMTP_PORT,
         smtpUser: MAIL_SMTP_USER,
         smtpPwd: MAIL_SMTP_PWD,
-        sendgridAPI: MAIL_SMTP_SENDGRID_API,
+        sendgridApi: MAIL_SMTP_SENDGRID_API,
       },
     );
   }
