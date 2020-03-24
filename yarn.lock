@@ -18,30 +18,30 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@sendgrid/client@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-6.5.3.tgz#9abbfe2038dd54f8a9a4bffa7da5c1579e299118"
-  integrity sha512-+K4yTMSNChfwKuuMGpnK1Xz7SnBoh3VDT8sILVwSMJRH3s18mOf5Bv/xbAxawqX4Wz50rlSrpbA5A3FwiSDzJA==
+"@sendgrid/client@^6.5.5":
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-6.5.5.tgz#66cf569445d98a795998a894bb432a9939ead7c3"
+  integrity sha512-Nbfgo94gbWSL8PIgJfuHoifyOJJepvV8NQkkglctAEfb1hyozKhrzE6v1kPG/z4j0RodaTtXD5LJj/t0q/VhLA==
   dependencies:
-    "@sendgrid/helpers" "^6.5.3"
+    "@sendgrid/helpers" "^6.5.5"
     "@types/request" "^2.48.4"
     request "^2.88.0"
 
-"@sendgrid/helpers@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@sendgrid/helpers/-/helpers-6.5.3.tgz#60545e077857fa13e5fd295b1b03a5ed9a45f9e3"
-  integrity sha512-Cr5lV8H8STg8bzdzU5pEctI/SDQ3TCLiq72Ao2r3tGyusIxJ00C7CrXddhjEdYBsHvJZLaBTfG04yp8303em6w==
+"@sendgrid/helpers@^6.5.5":
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/@sendgrid/helpers/-/helpers-6.5.5.tgz#de6de9b94794fbf834b4f66a7d44af84bf736459"
+  integrity sha512-uRFEanalfss5hDsuzVXZ1wm7i7eEXHh1py80piOXjobiQ+MxmtR19EU+gDSXZ+uMcEehBGhxnb7QDNN0q65qig==
   dependencies:
     chalk "^2.0.1"
     deepmerge "^4.2.2"
 
-"@sendgrid/mail@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-6.5.3.tgz#e8dd9084758f555dfa4de409dd4fccadb8e1b5dc"
-  integrity sha512-ePveau4VFFu8I9ETqgILKZajf577yapepnm3hG2Wj41fokHY6Uqpm3kkYTSWyw4VF+uapJPd9eVDcXWFbafvJw==
+"@sendgrid/mail@^6.5.5":
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-6.5.5.tgz#45bef4e4878144304b6688867baa13179deecc4b"
+  integrity sha512-DSu8oTPI0BJFH60jMOG9gM+oeNMoRALFmdAYg2PIXpL+Zbxd7L2GzQZtmf1jLy/8UBImkbB3D74TjiOBiLRK1w==
   dependencies:
-    "@sendgrid/client" "^6.5.3"
-    "@sendgrid/helpers" "^6.5.3"
+    "@sendgrid/client" "^6.5.5"
+    "@sendgrid/helpers" "^6.5.5"
 
 "@types/caseless@*":
   version "0.12.2"
@@ -436,10 +436,10 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-prettier@^6.10.0:
-  version "6.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.10.0.tgz#7b15e303bf9c956875c948f6b21500e48ded6a7f"
-  integrity sha512-AtndijGte1rPILInUdHjvKEGbIV06NuvPrqlIEaEaWtbtvJh464mDeyGMdZEQMsGvC0ZVkiex1fSNcC4HAbRGg==
+eslint-config-prettier@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.10.1.tgz#129ef9ec575d5ddc0e269667bf09defcd898642a"
+  integrity sha512-svTy6zh1ecQojvpbJSgH3aei/Rt7C6i090l5f2WQ4aB05lYHeZIR1qL4wZyyILTbtmnbHP5Yn8MrsOJMGa8RkQ==
   dependencies:
     get-stdin "^6.0.0"
 
@@ -1125,10 +1125,10 @@ node-fetch@^2.6.0:
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
-nodemailer@^6.4.3:
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.3.tgz#10d29195fb020e3297495bcba39d3519b23483f3"
-  integrity sha512-zmx4MTzYWQo2abFexvFYVURaiBGLekoA/yjP2Ctigd82hYtC4n38pcphQBi805t7AB2sY6DwmxnP/tb77f3KHA==
+nodemailer@^6.4.6:
+  version "6.4.6"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.6.tgz#d37f504f6560b36616f646a606894fe18819107f"
+  integrity sha512-/kJ+FYVEm2HuUlw87hjSqTss+GU35D4giOpdSfGp7DO+5h6RlJj7R94YaYHOkoxu1CSaM0d3WRBtCzwXrY6MKA==
 
 normalize-package-data@^2.3.2:
   version "2.5.0"
@@ -1303,10 +1303,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^1.19.1:
-  version "1.19.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
-  integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+prettier@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.2.tgz#1ba8f3eb92231e769b7fcd7cb73ae1b6b74ade08"
+  integrity sha512-5xJQIPT8BraI7ZnaDwSbu5zLrB6vvi8hVV58yHQ+QK64qrY40dULy0HSRlQ2/2IdzeBpjhDkqdcFBnFeDEMVdg==
 
 progress@^2.0.0:
   version "2.0.3"
