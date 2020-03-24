@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { formatMessage, sendWebhookNotification, sendMailNotification, getUserData } = require('./utils');
+const { formatMessage, sendWebhookNotification, sendMailNotification, getUserData } = require('../utils');
 
 (async () => {
   // Get User Information
@@ -8,16 +8,12 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
 
   const templateVars = [
     {
-      name: 'JAIL',
-      content: process.env.JAIL,
+      name: 'IP',
+      content: process.env.IP,
     },
     {
       name: 'HOSTNAME',
       content: process.env.HOSTNAME,
-    },
-    {
-      name: 'FAILURE',
-      content: process.env.FAILURE,
     },
     {
       name: 'CITY',
@@ -45,16 +41,16 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
   ];
 
   // Send slack notification
-  if (process.env.WEBHOOK_FAIL2BAN_URL) {
+  if (process.env.WEBHOOK_SSH_URL) {
     let message =
-      ':shield: **Fail2Ban Update** :shield: \n\nNew Ban on **|HOSTNAME|** (jail -> *|JAIL|*) ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
-      process.env.WEBHOOK_FAIL2BAN_MESSAGE;
+      ':police_officer: **Security Update** :police_officer: \n\nNew SSH Connection on **|HOSTNAME|** ! \nIP: ***|IP|***\nDATE: *|DATE|*\n\nCOUNTRY: :flag_*|COUNTRYFLAG|*: ***|COUNTRY|*** \nCITY: *|CITY|*\n\nhttps://www.ip-tracker.org/locator/ip-lookup.php?ip=*|IP|*' ||
+      process.env.WEBHOOK_SSH_MESSAGE;
 
-    await sendWebhookNotification(process.env.WEBHOOK_FAIL2BAN_URL, formatMessage(message, templateVars));
+    await sendWebhookNotification(process.env.WEBHOOK_SSH_URL, formatMessage(message, templateVars));
   }
 
   // Send Email
-  if (process.env.MAIL_SMTP_HOST) {
+  if (process.env.MAIL_SMTP_HOST || process.env.MAIL_SMTP_SENDGRID_API) {
     const {
       MAIL_SMTP_HOST,
       MAIL_SMTP_PORT,
@@ -65,16 +61,16 @@ const { formatMessage, sendWebhookNotification, sendMailNotification, getUserDat
     } = process.env;
 
     await sendMailNotification(
-      `New FAIL2BAN Connection to ${process.env.HOSTNAME}`,
+      `New SSH Connection to ${process.env.HOSTNAME}`,
       MAIL_SMTP_TO,
-      'fail2ban_ban',
+      'ssh_signin',
       templateVars,
       {
         smtpHost: MAIL_SMTP_HOST,
         smtpPort: MAIL_SMTP_PORT,
         smtpUser: MAIL_SMTP_USER,
         smtpPwd: MAIL_SMTP_PWD,
-        sendgridAPI: MAIL_SMTP_SENDGRID_API,
+        sendgridApi: MAIL_SMTP_SENDGRID_API,
       },
     );
   }
