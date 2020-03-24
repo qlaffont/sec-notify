@@ -1,6 +1,12 @@
 require('dotenv').config();
 
-const { formatMessage, sendWebhookNotification, sendMailNotification, getUserData } = require('../utils');
+const {
+  formatMessage,
+  sendWebhookNotification,
+  sendMailNotification,
+  getUserData,
+  isEmailServiceActivated,
+} = require('../utils');
 
 (async () => {
   // Get User Information
